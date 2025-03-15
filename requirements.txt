@@ -9,4 +9,5 @@ gdown
 python-dotenv
 httpx<0.25.0
 langchain
+faiss-cpu
 langchain-community
