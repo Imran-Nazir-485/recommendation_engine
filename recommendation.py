@@ -16,6 +16,7 @@ import gdown
 from dotenv import load_dotenv
 import random
 import re
+import faiss
 from openai import OpenAI
 # Load environment variables
 load_dotenv()
