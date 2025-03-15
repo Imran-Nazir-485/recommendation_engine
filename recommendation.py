@@ -37,7 +37,6 @@ def download_db():
     url = f"https://drive.google.com/uc?id=1qkcNnBR9m7ivbx69HawYoe-QLO2SewYp"
     gdown.download(url, output_file, quiet=False)
     return output_file
-
 f=download_db()
 
 # Load FAISS index
