@@ -92,7 +92,7 @@ llm = ChatGroq(
 
 
 # Define a custom prompt template
-def custom_PromptTemplate(context, question):
+def custom_PromptTemplate(context, profile):
 
     return f"""
     You are an AI assistant that helps couples to keep their partner happy. User will tell you about traits of his/her partner, recommending places in netherlands based on the provided details.
@@ -100,10 +100,11 @@ def custom_PromptTemplate(context, question):
     Context:
     {context}
     
-    Question:
-    {question}
+    profile:
+    {profile}
 
     You can add additional information from your knowledgebase as well that make parnter happy.
+    based on profile, recommend most similar results from your knowledge base.
     Provide a clear and concise response.
     """
     
@@ -142,6 +143,6 @@ if st.button("Recommend"):
     for res in results:
         res= " " + f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {res['Tags']}, Best time to visit: {res['Best Time to Visit']}, Additional Info: {res['Additional Info']}"
         # st.write(f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {res['Tags']}, Best time to visit: {res['Best Time to Visit']}, Additional Info: {res['Additional Info']}")
-    st.write(llm.invoke(custom_PromptTemplate(res,user_profile)))
+    st.write(llm.invoke(custom_PromptTemplate(res,user_profile)).content)
 
 
