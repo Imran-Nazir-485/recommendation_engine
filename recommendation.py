@@ -106,7 +106,7 @@ def custom_PromptTemplate(context, question)
     You can add additional information from your knowledgebase as well.
     Provide a clear and concise response.
     """
-    )
+    
 
 
 
