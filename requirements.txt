@@ -1,0 +1,12 @@
+openpyxl
+langchain_community
+sentence_transformers
+langchain_openai
+langchainhub
+langchain_groq
+torch
+gdown
+python-dotenv
+httpx<0.25.0
+langchain
+langchain-community
