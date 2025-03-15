@@ -40,7 +40,7 @@ def download_db():
 f=download_db()
 
 # Load FAISS index
-# index = faiss.read_index(f)
+index = faiss.read_index(f)
 # https://drive.google.com/file/d/1wYz0VHandcxXrr3krT7ILdtFYeYTL05v/view?usp=sharing
 # Download the file
 output_file = "metadata.pkl"
@@ -52,8 +52,8 @@ def download_db():
     
 m=download_db()
 # Load metadata
-# with open(m, "rb") as mk:
-#     metadata = pickle.load(mk)
+with open(m, "rb") as mk:
+    metadata = pickle.load(mk)
 
 
 # Load FAISS index before searching
@@ -61,7 +61,7 @@ def search_places(user_profile_text, top_k=5):
     """Search for places similar to a user profile."""
     
     # Load FAISS index
-    index = faiss.read_index(f)
+    # index = faiss.read_index(f)
 
     # Generate embedding for user profile
     user_embedding = model.encode([user_profile_text], convert_to_numpy=True)
@@ -70,8 +70,8 @@ def search_places(user_profile_text, top_k=5):
     distances, indices = index.search(user_embedding, top_k)
 
     # Load metadata
-    with open(m, "rb") as f:
-        metadata = pickle.load(f)
+    # with open(m, "rb") as f:
+    #     metadata = pickle.load(f)
 
     # Retrieve search results
     results = [metadata[i] for i in indices[0]]
