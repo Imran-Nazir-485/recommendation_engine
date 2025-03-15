@@ -84,7 +84,7 @@ GROQ_API_KEY=os.getenv("GROQ_API_KEY")
 
 from langchain_groq import ChatGroq
 
-llm_llama3 = ChatGroq(
+llm = ChatGroq(
     temperature=0,
     model="llama-3.3-70b-versatile",
     api_key=GROQ_API_KEY
