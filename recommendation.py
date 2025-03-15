@@ -71,7 +71,7 @@ with open(m, "rb") as mk:
 
 
 # Set the page configuration to wide mode
-st.set_page_config(page_title="My App", layout="wide")
+# st.set_page_config(page_title="My App", layout="wide")
 
 
 
