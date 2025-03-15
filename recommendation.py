@@ -92,10 +92,10 @@ llm_llama3 = ChatGroq(
 
 
 # Define a custom prompt template
-def custom_PromptTemplate(context, question)
+def custom_PromptTemplate(context, question):
 
     return f"""
-    You are an AI assistant recommending places in netherlands based on the provided context.
+    You are an AI assistant that helps couples to keep their partner happy. User will tell you about traits of his/her partner, recommending places in netherlands based on the provided details.
     
     Context:
     {context}
@@ -103,7 +103,7 @@ def custom_PromptTemplate(context, question)
     Question:
     {question}
 
-    You can add additional information from your knowledgebase as well.
+    You can add additional information from your knowledgebase as well that make parnter happy.
     Provide a clear and concise response.
     """
     
