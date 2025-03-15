@@ -84,8 +84,9 @@ if st.button("Recommend"):
     user_embedding = model.encode([user_profile], convert_to_numpy=True)
 
     D, I = index.search(user_embedding, k=10)  # Get top 3 similar rows
+    st.write(I)
         
-    for idx in I[0]:
-        st.write(idx)
+    # for idx in I[0]:
+    #     st.write(idx)
 
 
