@@ -83,7 +83,7 @@ user_profile=st.text_area("Tell Me About Yourself")
 if st.button("Recommend"):
     user_embedding = model.encode([user_profile], convert_to_numpy=True)
 
-    D, I = index.search(query_embedding, k=10)  # Get top 3 similar rows
+    D, I = index.search(user_embedding, k=10)  # Get top 3 similar rows
         
     for idx in I[0]:
         st.write(idx)
