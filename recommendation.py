@@ -29,7 +29,7 @@ import pickle
 import faiss
 
 # https://drive.google.com/file/d/1qkcNnBR9m7ivbx69HawYoe-QLO2SewYp/view?usp=sharing
-output_file = "faiss_index.bin"ng
+output_file = "faiss_index.bin"
 # Download the file
 @st.cache_data
 def download_db():
