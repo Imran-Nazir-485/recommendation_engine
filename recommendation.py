@@ -116,7 +116,7 @@ if st.button("Recommend"):
     
     # Print search results
     for res in results:
-        st.write(f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {row['Tags']}, Best time to visit: {row['Best Time to Visit']}, Additional Info: {row['Additional Info']}")
+        st.write(f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {res['Tags']}, Best time to visit: {res['Best Time to Visit']}, Additional Info: {res['Additional Info']}")
 
 
 
