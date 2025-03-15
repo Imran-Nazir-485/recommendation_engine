@@ -18,6 +18,7 @@ import random
 import re
 import faiss
 from openai import OpenAI
+from langchain.prompts import PromptTemplate
 # Load environment variables
 load_dotenv()
 # Load Sentence Transformer model
@@ -79,10 +80,33 @@ def search_places(user_profile_text, top_k=5):
     return results
 
 
+GROQ_API_KEY=os.getenv("GROQ_API_KEY")
+
+from langchain_groq import ChatGroq
+
+llm_llama3 = ChatGroq(
+    temperature=0,
+    model="llama-3.3-70b-versatile",
+    api_key=GROQ_API_KEY
+)
 
 
+# Define a custom prompt template
+def custom_PromptTemplate(context, question)
 
+    return f"""
+    You are an AI assistant recommending places in netherlands based on the provided context.
+    
+    Context:
+    {context}
+    
+    Question:
+    {question}
 
+    You can add additional information from your knowledgebase as well.
+    Provide a clear and concise response.
+    """
+    )
 
 
 
@@ -113,10 +137,11 @@ if st.button("Recommend"):
     # Example user profile search
     # user_profile = "I love historical sites and museums with cultural exhibits. I prefer places that are quiet and educational."
     results = search_places(user_profile)
-    
+    res=""
     # Print search results
     for res in results:
-        st.write(f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {res['Tags']}, Best time to visit: {res['Best Time to Visit']}, Additional Info: {res['Additional Info']}")
-
+        res= " " + f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {res['Tags']}, Best time to visit: {res['Best Time to Visit']}, Additional Info: {res['Additional Info']}"
+        # st.write(f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {res['Tags']}, Best time to visit: {res['Best Time to Visit']}, Additional Info: {res['Additional Info']}")
+    st.write(llm.invoke(custom_PromptTemplate(res,user_profile)))
 
 
