@@ -104,10 +104,10 @@ def search_places(user_profile_text, top_k=5):
 
 
 
-st.write("Places Recommendation")
+st.subheader("Places Recommendation")
 
 
-user_profile=st.text_area("Tell Me About Yourself")
+user_profile=st.text_area("Tell Me About Your Partner")
 
 if st.button("Recommend"):
     # Example user profile search
