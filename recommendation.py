@@ -30,54 +30,54 @@ model = SentenceTransformer("sentence-transformers/all-MiniLM-L6-v2")
 import pickle
 import faiss
 
-# https://drive.google.com/file/d/1qkcNnBR9m7ivbx69HawYoe-QLO2SewYp/view?usp=sharing
-output_file = "faiss_index.bin"
-# Download the file
-@st.cache_data
-def download_db():
-    url = f"https://drive.google.com/uc?id=1qkcNnBR9m7ivbx69HawYoe-QLO2SewYp"
-    gdown.download(url, output_file, quiet=False)
-    return output_file
-f=download_db()
+# # https://drive.google.com/file/d/1qkcNnBR9m7ivbx69HawYoe-QLO2SewYp/view?usp=sharing
+# output_file = "faiss_index.bin"
+# # Download the file
+# @st.cache_data
+# def download_db():
+#     url = f"https://drive.google.com/uc?id=1qkcNnBR9m7ivbx69HawYoe-QLO2SewYp"
+#     gdown.download(url, output_file, quiet=False)
+#     return output_file
+# f=download_db()
 
-# Load FAISS index
-index = faiss.read_index(f)
-# https://drive.google.com/file/d/1wYz0VHandcxXrr3krT7ILdtFYeYTL05v/view?usp=sharing
-# Download the file
-output_file = "metadata.pkl"
-@st.cache_data
-def download_db():
-    url = f"https://drive.google.com/uc?id=1wYz0VHandcxXrr3krT7ILdtFYeYTL05v"
-    gdown.download(url, output_file, quiet=False)
-    return output_file
+# # Load FAISS index
+# index = faiss.read_index(f)
+# # https://drive.google.com/file/d/1wYz0VHandcxXrr3krT7ILdtFYeYTL05v/view?usp=sharing
+# # Download the file
+# output_file = "metadata.pkl"
+# @st.cache_data
+# def download_db():
+#     url = f"https://drive.google.com/uc?id=1wYz0VHandcxXrr3krT7ILdtFYeYTL05v"
+#     gdown.download(url, output_file, quiet=False)
+#     return output_file
     
-m=download_db()
-# Load metadata
-with open(m, "rb") as mk:
-    metadata = pickle.load(mk)
+# m=download_db()
+# # Load metadata
+# with open(m, "rb") as mk:
+#     metadata = pickle.load(mk)
 
 
-# Load FAISS index before searching
-def search_places(user_profile_text, top_k=5):
-    """Search for places similar to a user profile."""
+# # Load FAISS index before searching
+# def search_places(user_profile_text, top_k=5):
+#     """Search for places similar to a user profile."""
     
-    # Load FAISS index
-    # index = faiss.read_index(f)
+#     # Load FAISS index
+#     # index = faiss.read_index(f)
 
-    # Generate embedding for user profile
-    user_embedding = model.encode([user_profile_text], convert_to_numpy=True)
+#     # Generate embedding for user profile
+#     user_embedding = model.encode([user_profile_text], convert_to_numpy=True)
 
-    # Perform similarity search
-    distances, indices = index.search(user_embedding, top_k)
+#     # Perform similarity search
+#     distances, indices = index.search(user_embedding, top_k)
 
-    # Load metadata
-    # with open(m, "rb") as f:
-    #     metadata = pickle.load(f)
+#     # Load metadata
+#     # with open(m, "rb") as f:
+#     #     metadata = pickle.load(f)
 
-    # Retrieve search results
-    results = [metadata[i] for i in indices[0]]
+#     # Retrieve search results
+#     results = [metadata[i] for i in indices[0]]
     
-    return results
+#     return results
 
 
 GROQ_API_KEY=os.getenv("GROQ_API_KEY")
@@ -95,14 +95,24 @@ llm = ChatGroq(
 def custom_PromptTemplate(context):
 
     return f"""
-    You are an AI assistant that do sentiment and emotional analysis.
-    Context:
-    {context}
+    You are an AI assistant specialized in sentiment and emotion analysis.  
     
+    Context:  
+    {context}  
     
-    provide the results full Emojis and text
+    Task:  
+    - Analyze the sentiment and emotional tone of the given text.  
+    - Provide results using full **emojis and text** for better readability.  
+    - Format the output concisely with no extra explanations—**just the analysis results.**  
+    
+    Expected Output Example:  
+    ✔️ Positive | 😊 Happy  
+    ⚠️ Mixed | 😕 Confused  
+    💬 Sarcastic | 😏 Ironic  
+    
+    Ensure accuracy and consistency in labeling.  
     """
-    
+
 
 
 
@@ -124,7 +134,7 @@ def custom_PromptTemplate(context):
 
 
 
-st.subheader("Places Recommendation")
+st.subheader("Understand Text Emotion with AI")
 
 
 user_profile=st.text_area("Add Text Here")
