@@ -99,7 +99,7 @@ def custom_PromptTemplate(context):
     Context:  
     {context}  
     
-    Provide the analysis results using full emojis and text. No extra explanations—just the results.  
+    Provide the analysis results using full emojis and text.  
     """
 
 
