@@ -92,20 +92,15 @@ llm = ChatGroq(
 
 
 # Define a custom prompt template
-def custom_PromptTemplate(context, profile):
+def custom_PromptTemplate(context):
 
     return f"""
-    You are an AI assistant that helps couples to keep their partner happy. User will tell you about traits of his/her partner, recommending places in netherlands based on the provided details.
-    
+    You are an AI assistant that do sentiment and emotional analysis.
     Context:
     {context}
     
-    profile:
-    {profile}
-
-    You can add additional information from your knowledgebase as well that make parnter happy.
-    based on profile, recommend most similar results from your knowledge base.
-    Provide a clear and concise response.
+    
+    provide the results full Emojis and text
     """
     
 
@@ -132,9 +127,9 @@ def custom_PromptTemplate(context, profile):
 st.subheader("Places Recommendation")
 
 
-user_profile=st.text_area("Tell Me About Your Partner")
+user_profile=st.text_area("Add Text Here")
 
-if st.button("Recommend"):
+if st.button("Analyze"):
     # Example user profile search
     # user_profile = "I love historical sites and museums with cultural exhibits. I prefer places that are quiet and educational."
     results = search_places(user_profile)
