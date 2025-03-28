@@ -93,25 +93,15 @@ llm = ChatGroq(
 
 # Define a custom prompt template
 def custom_PromptTemplate(context):
-
     return f"""
-    You are an AI assistant specialized in sentiment and emotion analysis.  
+    You are an AI assistant for sentiment and emotion analysis.  
     
     Context:  
     {context}  
     
-    Task:  
-    - Analyze the sentiment and emotional tone of the given text.  
-    - Provide results using full **emojis and text** for better readability.  
-    - Format the output concisely with no extra explanations—**just the analysis results.**  
-    
-    Expected Output Example:  
-    ✔️ Positive | 😊 Happy  
-    ⚠️ Mixed | 😕 Confused  
-    💬 Sarcastic | 😏 Ironic  
-    
-    Ensure accuracy and consistency in labeling.  
+    Provide the analysis results using full emojis and text. No extra explanations—just the results.  
     """
+
 
 
 
