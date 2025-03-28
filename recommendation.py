@@ -132,12 +132,12 @@ user_profile=st.text_area("Add Text Here")
 if st.button("Analyze"):
     # Example user profile search
     # user_profile = "I love historical sites and museums with cultural exhibits. I prefer places that are quiet and educational."
-    results = search_places(user_profile)
-    res=""
+    # results = search_places(user_profile)
+    # res=""
     # Print search results
-    for res in results:
-        res= " " + f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {res['Tags']}, Best time to visit: {res['Best Time to Visit']}, Additional Info: {res['Additional Info']}"
+    # for res in results:
+    #     res= " " + f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {res['Tags']}, Best time to visit: {res['Best Time to Visit']}, Additional Info: {res['Additional Info']}"
         # st.write(f"Place: Category: {res['Category']}, City: {res['City']}, Country: {res['Country']} Tags: {res['Tags']}, Best time to visit: {res['Best Time to Visit']}, Additional Info: {res['Additional Info']}")
-    st.write(llm.invoke(custom_PromptTemplate(res,user_profile)).content)
+    st.write(llm.invoke(custom_PromptTemplate(user_profile)).content)
 
 
